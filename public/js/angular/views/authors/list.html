@@ -3,7 +3,11 @@
         <h3 class="page-header">Authors</h3>
 
         <a href="#/authors/new" class="btn btn-success lib-btn">New Author</a>
-
+        <div class="row">
+            <div class="form-group col-md-3 search-el">
+                <input type="text" ng-model="search.author" class="form-control" placeholder="Search">
+            </div>
+        </div>
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
@@ -11,7 +15,7 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr ng-repeat="author in authors">
+            <tr ng-repeat="author in authors | filter: search">
                 <td>[[ author.id ]]</td>
                 <td>[[ author.author ]]</td>
                 <td><a ng-href="#/authors/edit/[[ author.id ]]" class="glyphicon glyphicon-pencil"></a></td>

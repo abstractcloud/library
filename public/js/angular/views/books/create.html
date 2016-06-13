@@ -9,20 +9,78 @@
             </div>
             <div class="form-group">
                 <label for="SelectAuthor">Authors</label>
-                <ui-select multiple name="authors" ng-model="selected" theme="bootstrap" sortable="true" close-on-select="false">
+                <ui-select multiple name="authors" on-select="additem($item)" ng-model="selected" theme="bootstrap" sortable="true" close-on-select="false">
                     <ui-select-match placeholder="Select Author...">[[$item.author]]</ui-select-match>
                     <ui-select-choices repeat="author in authors">
                         <div ng-bind-html="author.author | highlight: $select.search"></div>
                         <small>[[author.author]]</small>
                     </ui-select-choices>
                 </ui-select>
-
-
                 <p class="form-error" ng-show="libraryform.authors.$error.required">Select authors</p>
             </div>
+            <div class="form-group">
+                <label for="InputDescription">Location</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Hall</label>
+                            <input type="text" ng-model="location.hall" required name="hall" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Shelving</label>
+                            <input type="text" ng-model="location.shelving" required name="shelving" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Bookshelf</label>
+                            <input type="text" ng-model="location.bookshelf" required name="bookshelf" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Position</label>
+                            <input type="text" ng-model="location.position" required name="position" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <p 
+                        class="form-error" 
+                        ng-show="
+                                libraryform.hall.$error.required || 
+                                libraryform.shelving.$error.required ||
+                                libraryform.bookshelf.$error.required ||
+                                libraryform.position.$error.required
+                                ">
+                        Enter location
+                    </p>
+            </div>
+            <div class="form-group">
+                <label>Book Status</label>
+                <select name="book_status" class="form-control" ng-model="book.book_status" required>
+                    <option value="[[ item.id ]]" ng-repeat="item in status">[[ item.status ]]</option>
+                </select>
+                <p class="form-error" ng-show="libraryform.book_status.$error.required">Select book status</p>
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <textarea name="description" ng-model="book.description" id="InputDescription" cols="30" rows="10" class="form-control" required></textarea>
+                <p class="form-error" ng-show="libraryform.description.$error.required">Enter description</p>
+            </div>
+            
 
             <a href="#/" class="btn btn-danger pull-right lib-btn">Back</a>
-            <button type="submit" ng-click="create()" ng-disabled="libraryform.name.$error.required" class="btn btn-success pull-right lib-btn">Add</button>
+            <button type="submit" ng-click="create()" 
+            ng-disabled="
+                libraryform.name.$error.required || 
+                libraryform.description.$error.required || 
+                libraryform.hall.$error.required || 
+                libraryform.shelving.$error.required ||
+                libraryform.bookshelf.$error.required ||
+                libraryform.position.$error.required
+                " class="btn btn-success pull-right lib-btn">Add</button>
 
         </form>
     </div>

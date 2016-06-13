@@ -29,6 +29,7 @@ Route::get('/api/book/get/{id}', "Api\BookController@one");
 Route::put('/api/book/create', "Api\BookController@create");
 Route::patch('/api/book/update', "Api\BookController@update");
 Route::delete('/api/book/delete/{id}', "Api\BookController@delete");
+Route::get('/api/book/status', "Api\BookController@status");
 
 Route::auth();
 

@@ -3,16 +3,21 @@
         <h3 class="page-header">Books</h3>
         
         <a href="#/books/new" class="btn btn-success lib-btn">New Book</a>
+        <div class="row">
+            <div class="form-group col-md-3 search-el">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </div>
         
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Author</th>
+                <th>Authors</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr ng-repeat="book in books">
+            <tr ng-repeat="book in books | filter: search">
                 <td>[[ book.id ]]</td>
                 <td>[[ book.name ]]</td>
                 <td>[[ book.author ]]</td>
