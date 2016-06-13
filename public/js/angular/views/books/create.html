@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-5">
+        <h3 class="page-header">New Book</h3>
+        <form name="libraryform" novalidate>
+            <div class="form-group">
+                <label for="InputName">Name</label>
+                <input type="text" class="form-control" name="name" id="InputName" placeholder="Name" required ng-model="book.name">
+                <p class="form-error" ng-show="libraryform.name.$error.required">Type name</p>
+            </div>
+            <div class="form-group">
+                <label for="SelectAuthor">Authors</label>
+                <ui-select multiple name="authors" ng-model="selected" theme="bootstrap" sortable="true" close-on-select="false">
+                    <ui-select-match placeholder="Select Author...">[[$item.author]]</ui-select-match>
+                    <ui-select-choices repeat="author in authors">
+                        <div ng-bind-html="author.author | highlight: $select.search"></div>
+                        <small>[[author.author]]</small>
+                    </ui-select-choices>
+                </ui-select>
+
+
+                <p class="form-error" ng-show="libraryform.authors.$error.required">Select authors</p>
+            </div>
+
+            <a href="#/" class="btn btn-danger pull-right lib-btn">Back</a>
+            <button type="submit" ng-click="create()" ng-disabled="libraryform.name.$error.required" class="btn btn-success pull-right lib-btn">Add</button>
+
+        </form>
+    </div>
+</div>

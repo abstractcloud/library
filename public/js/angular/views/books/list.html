@@ -1,0 +1,24 @@
+<div class="row" ng-controller="booksCtrl">
+    <div class="col-md-12">
+        <h3 class="page-header">Books</h3>
+        
+        <a href="#/books/new" class="btn btn-success lib-btn">New Book</a>
+        
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat="book in books">
+                <td>[[ book.id ]]</td>
+                <td>[[ book.name ]]</td>
+                <td>[[ book.author ]]</td>
+                <td><a ng-href="#/books/edit/[[ book.id ]]" class="glyphicon glyphicon-pencil"></a></td>
+                <td><a ng-href="#/books" class="glyphicon glyphicon-remove" ng-click="delete(book.id)"></a></td>
+            </tr>
+        </table> 
+    </div>
+</div>

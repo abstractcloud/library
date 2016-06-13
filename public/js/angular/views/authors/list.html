@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="page-header">Authors</h3>
+
+        <a href="#/authors/new" class="btn btn-success lib-btn">New Author</a>
+
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Author</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat="author in authors">
+                <td>[[ author.id ]]</td>
+                <td>[[ author.author ]]</td>
+                <td><a ng-href="#/authors/edit/[[ author.id ]]" class="glyphicon glyphicon-pencil"></a></td>
+                <td><a ng-href="#/authors" class="glyphicon glyphicon-remove" ng-click="delete(author.id)"></a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
