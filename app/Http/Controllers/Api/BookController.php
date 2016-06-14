@@ -41,7 +41,6 @@ class BookController extends Controller
             $bookAthorModel->insertAllData($params['authors'], $book->id);
         }
         
-        
         return response()->json($params);
     }
     

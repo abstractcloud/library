@@ -4,8 +4,8 @@ library.controller('booksCtrl', function ($scope, $http, $location) {
     });
     
     $scope.delete = function(id){
-        $http.delete('/api/book/delete/' + id).success(function(book){
-            $scope.book = book;
+        $http.delete('/api/book/delete/' + id).success(function(books){
+            $scope.books = books;
         });
     }
 });
