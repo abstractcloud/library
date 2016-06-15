@@ -21,3 +21,7 @@
 .img-preview > img {
     width: 160px;
 }
+
+.img-preview a{
+    vertical-align: top;
+}

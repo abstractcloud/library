@@ -30,11 +30,24 @@ library.controller('booksNewCtrl', function ($scope, $http, $location) {
     }
     
     $scope.loadfile = function(f){
-        $scope.book.preview = f;
+        console.log(f);
+        if($scope.book === undefined){
+            $scope.book = {};    
+        }
+        
+        var fd = new FormData();
+        fd.append('bookimg', f)
+        $scope.preview = fd;
+    }
+    
+    $scope.deleteimage = function(){
+        $scope.preview = null;
+        $('.img-preview > img').removeAttr('src');
+        $('.upload-img').val('');
     }
     
     $scope.create = function(){
-
+        $scope.book.preview = $('.img-preview > img').attr('src');
         $scope.book.authors = $scope.selected;
         $scope.book.location = $scope.location;
         $http.put('/api/book/create', $scope.book).success(function(data){
@@ -54,6 +67,8 @@ library.controller('booksUpdtCtrl', function ($scope, $http, $location, $routePa
     
     $http.get('/api/book/get/' + $routeParams.id).success(function(book){
         $scope.book = book;
+        $scope.location = book.location;
+        $scope.selected = book.authors;
     });
     
     $scope.update = function(){

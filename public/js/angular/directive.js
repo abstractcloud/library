@@ -11,7 +11,6 @@ library.directive('fileUpload', function () {
                     console.log("reader onload");
                     var dataURL = reader.result;
                     img.src = dataURL;
-
                     img.onload = function () {
                         $('.img-preview > img').attr('src', img.src);
                     }
