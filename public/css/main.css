@@ -17,3 +17,7 @@
     margin: 5px 0;
     color: crimson;
 }
+
+.img-preview > img {
+    width: 160px;
+}

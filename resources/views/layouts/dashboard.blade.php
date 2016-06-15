@@ -57,6 +57,7 @@
     <script src="/bower_components/angular-ui-select/dist/select.js"></script>
     <script src="/js/angular/app.js"></script>
     <script src="/js/angular/routes.js"></script>
+    <script src="/js/angular/directive.js"></script>
     <script src="/js/angular/controllers/books.js"></script>
     <script src="/js/angular/controllers/authors.js"></script>
 </body>

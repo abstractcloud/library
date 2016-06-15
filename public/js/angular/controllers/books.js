@@ -29,8 +29,12 @@ library.controller('booksNewCtrl', function ($scope, $http, $location) {
         });
     }
     
+    $scope.loadfile = function(f){
+        $scope.book.preview = f;
+    }
+    
     $scope.create = function(){
-        console.log($scope.book, $scope.location, $scope.selected);
+
         $scope.book.authors = $scope.selected;
         $scope.book.location = $scope.location;
         $http.put('/api/book/create', $scope.book).success(function(data){
