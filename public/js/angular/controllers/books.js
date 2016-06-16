@@ -5,9 +5,11 @@ library.controller('booksCtrl', function ($scope, $http, $location) {
     
     $scope.delete = function(id){
         $http.delete('/api/book/delete/' + id).success(function(books){
+            console.log();
             $scope.books = books;
         });
     }
+    
 });
 
 library.controller('booksNewCtrl', function ($scope, $http, $location) {
@@ -30,17 +32,13 @@ library.controller('booksNewCtrl', function ($scope, $http, $location) {
     }
     
     $scope.loadfile = function(f){
-        console.log(f);
-        if($scope.book === undefined){
-            $scope.book = {};    
-        }
-        
-        var fd = new FormData();
-        fd.append('bookimg', f)
-        $scope.preview = fd;
+        console.log(f, "load");
+       
+        $scope.preview = f;
     }
     
     $scope.deleteimage = function(){
+        console.log("delimg");
         $scope.preview = null;
         $('.img-preview > img').removeAttr('src');
         $('.upload-img').val('');
@@ -57,6 +55,9 @@ library.controller('booksNewCtrl', function ($scope, $http, $location) {
 });
 
 library.controller('booksUpdtCtrl', function ($scope, $http, $location, $routeParams) {
+    
+    var isBase64 = false;
+    
     $http.get('/api/authors/get').success(function(authors){
         $scope.authors = authors;
     });
@@ -65,16 +66,50 @@ library.controller('booksUpdtCtrl', function ($scope, $http, $location, $routePa
         $scope.status = status;
     });
     
-    $http.get('/api/book/get/' + $routeParams.id).success(function(book){
-        $scope.book = book;
-        $scope.location = book.location;
-        $scope.selected = book.authors;
+    $scope.loadfile = function(f){
+        console.log(f, "load");
+        isBase64 = true;
+        $scope.preview = f;
+    }
+    
+    $http.get('/api/book/get/' + $routeParams.id).success(function(books){
+        console.log(books);
+        $scope.book = books;
+//        $scope.book.preview = '';
+//        $scope.preview = true;
+        console.log(books);
+        if(books.preview){
+//            $scope.book.preview = true; 
+            $scope.preview = true;
+            $scope.bookpreview = '/img/upload/' + books.preview;
+        }
+        
+        $scope.location = books.location;
+        $scope.selected = books.authors;
     });
     
     $scope.update = function(){
-        console.log($scope.book);
+        console.log(isBase64);
+        if(isBase64){
+            $scope.book.preview = $('.img-preview > img').attr('src');
+        }
+        console.log($scope.book.preview);
         $http.patch('/api/book/update', $scope.book).success(function(data){
             $location.path('/');             
         });
+    }
+    
+    $scope.deleteimage = function(link){
+        console.log(link);
+        if(!isBase64){
+            $http.delete('/api/book/img/delete/' + link).success(function(){
+                console.log("deleted");
+                
+            });
+        }
+        $('.img-preview > img').removeAttr('src');
+        $scope.preview = null;
+        $scope.book.preview = null;
+        $('.upload-img').val('');
     }
 });

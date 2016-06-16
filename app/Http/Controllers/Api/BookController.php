@@ -64,8 +64,27 @@ class BookController extends Controller
     
     public function update(Request $request)
     {
+        $bookAthorModel = new BookAuthorModel();
+        
         $params = $request->json()->all();
+        
         $book = Book::find($params['id']);
+        $book->name = $params['name'];
+        $book->description = $params['description'];
+        $book->book_status_id = $params['book_status_id'];
+        
+        $location = Location::find($book->location_id);
+        $location->update($params['location']);
+        
+        if(!empty($params['preview'])){
+            $upload = new Upload();
+            $filename = $upload->uploadBase64Image($params['preview']);
+            $book->preview = $filename;
+        }
+        
+        $authors = BookAuthor::where('book_id', '=', $params['id'])->delete();
+        $bookAthorModel->insertAllData($params['authors'], $book->id);
+        
         $book->save();
         
         return response()->json($params);
@@ -75,7 +94,18 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         $book->delete();
-        $this->get();
+        $books = Book::all();
+        return response()->json($books);
+    }
+    
+    public function deleteimage($link)
+    {
+        $book = Book::where('preview', '=', $link)->first();
+        $book->preview = "";
+        $book->save();
+        
+        $upload = new Upload();
+        $filename = $upload->unlink($link);
     }
     
     public function status()

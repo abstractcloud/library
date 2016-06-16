@@ -43,8 +43,8 @@ class AuthorController extends Controller
     {
         $author = Author::find($id);
         $author->delete();
-        
-        $this->get();
+         $authors = Author::all();
+        return response()->json($authors);
     }
     
 }

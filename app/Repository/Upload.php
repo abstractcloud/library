@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Repository;
-use App\File;
+use File;
 
 class Upload{
     
@@ -44,8 +44,8 @@ class Upload{
     }
     
     public function unlink($link){
-        if(File::exists($link)){
-            unlink($link);
+        if(File::exists($this->filePath.$link)){
+            unlink($this->filePath.$link);
         }
     }
     

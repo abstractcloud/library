@@ -1,3 +1,7 @@
+a {
+    cursor: pointer;
+}
+
 .main-container {
     margin-top: 70px;
     
@@ -22,6 +26,21 @@
     width: 160px;
 }
 
-.img-preview a{
+.img-preview a {
     vertical-align: top;
+}
+
+.book-info {
+    width: 240px;
+    float: left;
+    margin: 10px;
+}
+
+.book-img > img {
+    height: 240px;
+    
+}
+
+.book-description {
+    margin: 15px 0;
 }
