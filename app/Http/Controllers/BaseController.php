@@ -3,16 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repository\Book;
+use App\Models\BookModel;
 use App\Http\Requests;
+
+use App\Factories\TopFactory;
 
 class BaseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        $period = $request->input('top');
+        $model = new BookModel();
+        $books = $model->getAllBooks();
+        
+        $topFactory = new TopFactory();
+        $topBooksFactory = $topFactory->factoryMethod('book');
+        $topAuthorsFactory = $topFactory->factoryMethod('author');
+        $topBooks = $topBooksFactory->top($period);
+        $topAuthors = $topAuthorsFactory->top($period);
+        return view('base.index', [
+            'books' => $books,
+            'topbooks' => $topBooks,
+            'topauthors' => $topAuthors
+            
+        ]);
+    }
+    
+    public function search(Request $request)
+    {
+        $params = $request->all();
+        $model = new BookModel();
+        $books = $model->getAllBooks($params);
         return view('base.index', [
             'books' => $books
         ]);
     }
+    
+    
 }

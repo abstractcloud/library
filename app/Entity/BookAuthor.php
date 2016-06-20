@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Entity;
 use Illuminate\Database\Eloquent\Model;
 
-class BookStatus extends Model
+class BookAuthor extends Model
 {
-    protected $table = 'book_status';
+    protected $table = 'book_authors';
     protected $guarded = [''];
     public $timestamps = false;
 }

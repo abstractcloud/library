@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Entity;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Entity;
 use Illuminate\Database\Eloquent\Model;
-//use App\Repository\Author;
+
 class Book extends Model
 {
     protected $table = 'books';
@@ -11,6 +11,6 @@ class Book extends Model
     
     public function author()
     {
-        return $this->belongsToMany('App\Repository\Author', 'book_authors');
+        return $this->belongsToMany('App\Entity\Author', 'book_authors');
     }
 }

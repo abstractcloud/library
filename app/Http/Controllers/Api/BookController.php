@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Repository\Book;
-use App\Repository\Author;
-use App\Repository\BookStatus;
-use App\Repository\BookAuthor;
-use App\Repository\Location;
-use App\Repository\Upload;
+use App\Entity\Book;
+use App\Entity\Author;
+use App\Entity\BookStatus;
+use App\Entity\BookAuthor;
+use App\Entity\Location;
+use App\Models\Upload;
 use App\Models\BookAuthorModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
