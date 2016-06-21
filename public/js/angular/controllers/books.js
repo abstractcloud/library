@@ -4,10 +4,11 @@ library.controller('booksCtrl', function ($scope, $http, $location) {
     });
     
     $scope.delete = function(id){
-        $http.delete('/api/book/delete/' + id).success(function(books){
-            console.log();
-            $scope.books = books;
-        });
+        if(confirm("Are you sure?")){
+            $http.delete('/api/book/delete/' + id).success(function(books){
+                $scope.books = books;
+            });
+        }
     }
     
 });
@@ -32,16 +33,15 @@ library.controller('booksNewCtrl', function ($scope, $http, $location) {
     }
     
     $scope.loadfile = function(f){
-        console.log(f, "load");
-       
         $scope.preview = f;
     }
     
     $scope.deleteimage = function(){
-        console.log("delimg");
-        $scope.preview = null;
-        $('.img-preview > img').removeAttr('src');
-        $('.upload-img').val('');
+        if(confirm("Are you sure?")){
+            $scope.preview = null;
+            $('.img-preview > img').removeAttr('src');
+            $('.upload-img').val('');
+        }
     }
     
     $scope.create = function(){
@@ -67,19 +67,13 @@ library.controller('booksUpdtCtrl', function ($scope, $http, $location, $routePa
     });
     
     $scope.loadfile = function(f){
-        console.log(f, "load");
         isBase64 = true;
         $scope.preview = f;
     }
     
     $http.get('/api/book/get/' + $routeParams.id).success(function(books){
-        console.log(books);
         $scope.book = books;
-//        $scope.book.preview = '';
-//        $scope.preview = true;
-        console.log(books);
         if(books.preview){
-//            $scope.book.preview = true; 
             $scope.preview = true;
             $scope.bookpreview = '/img/upload/' + books.preview;
         }
@@ -89,27 +83,25 @@ library.controller('booksUpdtCtrl', function ($scope, $http, $location, $routePa
     });
     
     $scope.update = function(){
-        console.log(isBase64);
         if(isBase64){
             $scope.book.preview = $('.img-preview > img').attr('src');
         }
-        console.log($scope.book.preview);
         $http.patch('/api/book/update', $scope.book).success(function(data){
             $location.path('/');             
         });
     }
     
     $scope.deleteimage = function(link){
-        console.log(link);
-        if(!isBase64){
-            $http.delete('/api/book/img/delete/' + link).success(function(){
-                console.log("deleted");
-                
-            });
+        if(confirm("Are you sure?")){
+            if(!isBase64){
+                $http.delete('/api/book/img/delete/' + link).success(function(){
+
+                });
+            }
+            $('.img-preview > img').removeAttr('src');
+            $scope.preview = null;
+            $scope.book.preview = null;
+            $('.upload-img').val('');
         }
-        $('.img-preview > img').removeAttr('src');
-        $scope.preview = null;
-        $scope.book.preview = null;
-        $('.upload-img').val('');
     }
 });

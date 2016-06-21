@@ -4,10 +4,11 @@ library.controller('authorsCtrl', function ($scope, $http, $location) {
     });
     
     $scope.delete = function(id){
-        console.log(id);
-        $http.delete('/api/author/delete/' + id).success(function(authors){
-            $scope.authors = authors;
-        });
+        if(confirm("Are you sure?")){
+            $http.delete('/api/author/delete/' + id).success(function(authors){
+                $scope.authors = authors;
+            });
+        }
     }
 });
 
@@ -20,13 +21,11 @@ library.controller('authorsNewCtrl', function ($scope, $http, $location) {
 });
 
 library.controller('authorsUpdtCtrl', function ($scope, $http, $location, $routeParams) {
-    console.log($routeParams);
     $http.get('/api/author/get/' + $routeParams.id).success(function(author){
         $scope.author = author;
     });
     
     $scope.update = function(){
-        console.log($scope.author);
         $http.patch('/api/author/update', $scope.author).success(function(data){
             $location.path('/authors');             
         });
