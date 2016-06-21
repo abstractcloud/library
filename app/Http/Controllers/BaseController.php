@@ -13,7 +13,7 @@ class BaseController extends Controller
     public function index(Request $request)
     {
         $params = $request->all();
-        $period = $params['top'];
+        $period = $request->input('top');
         $model = new BookModel();
         $books = $model->getAllBooks($params);
         
