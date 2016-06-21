@@ -20,7 +20,9 @@
             <tr ng-repeat="book in books | filter: search">
                 <td>[[ book.id ]]</td>
                 <td>[[ book.name ]]</td>
-                <td>[[ book.author ]]</td>
+                <td>
+                    <a ng-repeat="author in book.authors"> [[ author.author ]] </a>
+                </td>
                 <td><a ng-href="#/books/edit/[[ book.id ]]" class="glyphicon glyphicon-pencil"></a></td>
                 <td><a ng-href="#/" class="glyphicon glyphicon-remove" ng-click="delete(book.id)"></a></td>
             </tr>

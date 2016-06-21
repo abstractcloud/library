@@ -8,6 +8,7 @@ use App\Entity\BookAuthor;
 use App\Entity\Location;
 use App\Models\Upload;
 use App\Models\BookAuthorModel;
+use App\Models\BookModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
@@ -26,8 +27,9 @@ class BookController extends Controller
     
     public function get()
     {
-        $books = Book::all();
-        return response()->json($books);
+        $books = new BookModel();
+        $list = $books->getAllBooks();
+        return response()->json($list);
     }
     
     public function create(Request $request)
