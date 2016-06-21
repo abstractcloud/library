@@ -50,17 +50,22 @@ class Upload{
     }
     
     public function uploadBase64Image($base64){
-        $typeFormat = explode(":", explode(";", $base64)[0])[1];
-        if($this->isImage($typeFormat)){
-            $data = explode(',', $base64);
-            $image = base64_decode($data[1]);
-            $imageName = uniqid().".".explode("/", $typeFormat)[1];
-            $this->getFilePath();
-            file_put_contents($this->filePath.$imageName, $image);
-            
-            return $imageName;
+        $base64Part = explode(";", $base64);
+        if(!empty($base64Part[1])){
+            $typeFormat = explode(":", $base64Part[0])[1];
+            if($this->isImage($typeFormat)){
+                $data = explode(',', $base64);
+                $image = base64_decode($data[1]);
+                $imageName = uniqid().".".explode("/", $typeFormat)[1];
+                $this->getFilePath();
+                file_put_contents($this->filePath.$imageName, $image);
+
+                return $imageName;
+            }else{
+
+                return false;
+            }
         }else{
-            
             return false;
         }
     }

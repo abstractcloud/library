@@ -89,7 +89,9 @@ class BookController extends Controller
         if(!empty($params['preview'])){
             $upload = new Upload();
             $filename = $upload->uploadBase64Image($params['preview']);
-            $book->preview = $filename;
+            if($filename){
+                $book->preview = $filename;
+            }
         }
         
         $authors = BookAuthor::where('book_id', '=', $params['id'])->delete();
