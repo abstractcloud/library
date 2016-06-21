@@ -14,7 +14,7 @@ class BaseController extends Controller
     {
         $period = $request->input('top');
         $model = new BookModel();
-        $books = $model->getAllBooks();
+        $books = $model->getAllBooks($params);
         
         $topFactory = new TopFactory();
         $topBooksFactory = $topFactory->factoryMethod('book');
@@ -28,16 +28,5 @@ class BaseController extends Controller
             
         ]);
     }
-    
-    public function search(Request $request)
-    {
-        $params = $request->all();
-        $model = new BookModel();
-        $books = $model->getAllBooks($params);
-        return view('base.index', [
-            'books' => $books
-        ]);
-    }
-    
     
 }

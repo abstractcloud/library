@@ -12,7 +12,6 @@
 */
 
 Route::get('/', "BaseController@index");
-Route::get('/search', "BaseController@search");
 
 /* Dashboard Routes */
 Route::get('/dashboard', "Dashboard\DashboardController@index");

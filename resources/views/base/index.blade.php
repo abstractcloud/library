@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-8">
-            <form action="{{ url('/search') }}">
+            <form action="{{ url('/') }}">
                 <div class="row">
                     <div class="col-md-3">
                         <input type="text" name="author" class="form-control" id="InputAAuthor" placeholder="Author">
