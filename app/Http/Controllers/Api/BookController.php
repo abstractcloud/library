@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use Auth;
 use App\Entity\Book;
 use App\Entity\Author;
 use App\Entity\BookStatus;
@@ -15,6 +16,13 @@ use App\Http\Requests;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        if(!Auth::check()){
+            return response()->json(false);
+        }
+    }
+    
     public function one($id)
     {
         $book = Book::find($id);

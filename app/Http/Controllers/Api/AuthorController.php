@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use Auth;
 use App\Entity\Author;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -8,6 +9,13 @@ use App\Http\Requests;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        if(!Auth::check()){
+            return response()->json(false);
+        }
+    }
+    
     public function one($id)
     {
         $author = Author::find($id);
