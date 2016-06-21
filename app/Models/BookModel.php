@@ -4,7 +4,7 @@ namespace App\Models;
 use DB;
 use App\Entity\Book;
 use App\Entity\Author;
-use App\Repository\BookAuthor;
+use App\Entity\BookAuthor;
 use App\Contracts\TopInterface;
 use App\Factories\TopFactory;
 

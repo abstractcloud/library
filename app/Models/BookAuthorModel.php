@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Repository\BookAuthor;
+use App\Entity\BookAuthor;
 
 class BookAuthorModel
 {
