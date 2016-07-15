@@ -32,8 +32,17 @@
                 </div>
                 
             </form>
-        <div class="row">
+        
+            {{--*/ $i = 3 /*--}}
             @foreach($books as $book)
+            
+            @if($i % 3 == 0)
+            <div class="row">
+            
+            {{--*/ $i++ /*--}}
+            
+            @endif
+            
             <div class="book-info col-md-3">
                 <h4><a href="#book" >{{ $book->name }}</a></h4>
                 <small>Date: {{ date('d.m.Y', strtotime($book->date)) }}</small>
@@ -54,6 +63,11 @@
                     <a class="btn btn-primary" href="#" role="button">Read</a>
                 </div>
             </div>
+            
+            @if($i % 3 == 0)
+            </div>
+            @endif
+            
             @endforeach
         </div>
     </div>
