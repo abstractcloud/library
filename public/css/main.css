@@ -67,6 +67,7 @@ a {
     
 }
 
-.filter-inputs input, button{
+.filter-inputs input,
+.filter-inputs button {
     margin-top: 10px;
 }

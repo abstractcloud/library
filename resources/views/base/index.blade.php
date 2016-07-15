@@ -35,7 +35,7 @@
         <div class="row">
             @foreach($books as $book)
             <div class="book-info col-md-3">
-                <h4><a href="#author" >{{ $book->name }}</a></h4>
+                <h4><a href="#book" >{{ $book->name }}</a></h4>
                 <small>Date: {{ date('d.m.Y', strtotime($book->date)) }}</small>
                 <br>
                 <p>Status: {{ $book->status }}</p>
@@ -49,7 +49,7 @@
                         <a href="#author" >{{ $a->author }} </a> 
                     @endforeach
                 </p>
-                <p class="book-description">{{ $book->description }}</p>
+                <p class="book-description">{{ str_limit($book->description, 150) }}</p>
                 <div>
                     <a class="btn btn-primary" href="#" role="button">Read</a>
                 </div>
