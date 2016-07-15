@@ -10,7 +10,6 @@ library.controller('booksCtrl', function ($scope, $http, $location) {
             });
         }
     }
-    
 });
 
 library.controller('booksNewCtrl', function ($scope, $http, $location) {

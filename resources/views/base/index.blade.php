@@ -6,9 +6,6 @@
             <form action="{{ url('/') }}">
                 <div class="row filter-inputs">
                     <div class="col-md-3">
-                        <input type="text" name="author" class="form-control" id="InputAAuthor" placeholder="Author">
-                    </div>
-                    <div class="col-md-3">
                         <input type="date" name="datestart" class="form-control" id="InputDate" placeholder="Дата">
                     </div>
                     <div class="col-md-3">
