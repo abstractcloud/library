@@ -40,8 +40,10 @@ a {
 }
 
 .book-info {
+/*
     width: 240px;
     float: left;
+*/
     margin: 10px;
 }
 
@@ -63,4 +65,8 @@ a {
     
     font-size: 14px;
     
+}
+
+.filter-inputs input, button{
+    margin-top: 10px;
 }
