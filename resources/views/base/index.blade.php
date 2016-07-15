@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
             <form action="{{ url('/') }}">
                 <div class="row filter-inputs">
                     <div class="col-md-3">
@@ -34,7 +34,7 @@
             </form>
         <div class="row">
             @foreach($books as $book)
-            <div class="book-info col-md-4">
+            <div class="book-info col-md-3">
                 <h4><a href="#author" >{{ $book->name }}</a></h4>
                 <small>Date: {{ date('d.m.Y', strtotime($book->date)) }}</small>
                 <br>
@@ -57,7 +57,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-md-4 book-statistic">
+    <div class="col-md-3 book-statistic">
         <div class="row">
             <div class="col-md-12">
                 <nav class="book-top">
@@ -67,7 +67,7 @@
                     <a href="{{ url('/?top=week') }}" > Week </a> 
                 </nav>
                 <div class="row">
-                    <h3>TOP 10 Books</р3>
+                    <h3>TOP 10 Books</h3>
                     <ol class="book-top-list">
                         @foreach($topbooks as $item)
                         <li><a href="#">{{ $item->name }}</a></li>
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="row">
-                    <h3>TOP 10 Authors</р3>
+                    <h3>TOP 10 Authors</h3>
                     <ol class="book-top-list">
                         @foreach($topauthors as $item)
                         <li><a href="#">{{ $item->author }}</a></li>
